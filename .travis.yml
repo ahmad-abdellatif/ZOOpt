@@ -1,11 +1,47 @@
 language: python
-python:
-  - "2.7"
-  - "3.5"
-  - "3.5-dev"  # 3.5 development branch
-  - "3.6"
-  - "3.6-dev"  # 3.6 development branch
-  - "3.7-dev"  # 3.7 development branch
+
+matrix:
+  include:
+  - dist: xenial
+    os: linux
+    language: python
+    python: "3.5"
+  - dist: xenial
+    os: linux
+    language: python
+    python: "3.6"
+  - dist: xenial
+    os: linux
+    language: python
+    python: "3.8"
+  
+  - dist: trusty
+    os: linux
+    language: python
+    python: "3.5"
+  - dist: trusty
+    os: linux
+    language: python
+    python: "3.6"
+  - dist: trusty
+    os: linux
+    language: python
+    python: "3.8"
+    
+  - dist: bionic
+    os: linux
+    language: python
+    python: "3.5"
+  - dist: bionic
+    os: linux
+    language: python
+    python: "3.6"
+  - dist: bionic
+    os: linux
+    language: python
+    python: "3.8"
+
+
 # command to install dependencies
 install:
   - pip install -r requirements.txt
@@ -15,7 +51,8 @@ install:
 # command to run tests
 script:
   - coverage run --source zoopt -m py.test
-
+  - python example/simple_functions/quick_start.py
+  
 branches:
   only:
     - dev
